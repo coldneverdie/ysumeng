@@ -1,6 +1,6 @@
 name: ysumeng
 description: third party umeng sdk.
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/coldneverdie/ysumeng.git/
 
 environment:
