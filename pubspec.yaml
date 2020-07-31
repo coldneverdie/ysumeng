@@ -1,7 +1,7 @@
 name: ysumeng
 description: third party umeng sdk.
-version: 0.0.8
-homepage: https://github.com/coldneverdie/umeng_sdk.git
+version: 0.0.9
+homepage: https://github.com/coldneverdie/ysumeng.git/
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
