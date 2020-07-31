@@ -94,17 +94,18 @@ Future<void> initUmeng() async {
     }
     }
     ```
+```dart
     * 然后在每个StatefulWidget 页面中进行集成即可
     ```dart 
     class MorePage extends StatefulWidget {
-  @override
-  _MorePageState createState() => _MorePageState();
-}
+    @override
+    _MorePageState createState() => _MorePageState();
+    }
+    class _MorePageState extends State<MorePage> with BasePage<MorePage> {
+        ...
+    }
 
-class _MorePageState extends State<MorePage> with BasePage<MorePage> {
-    ...
-}
-    ```
+```
 ### 几个参考：
 
 1. https://flutter.dev/docs/development/packages-and-plugins/developing-packages
