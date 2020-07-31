@@ -24,7 +24,8 @@ constructMessage:{"sessions":[{"id":"5BBAA1802FC7A2EFF3621F373F747348","start_ti
 1. 集成ysumeng 库
 2. 在应用的application class，做一些初始化操作，如下：
 
-    ```java
+```
+java
     public class MainApplication extends FlutterApplication {
     @Override
     public void onCreate() {
@@ -38,10 +39,12 @@ constructMessage:{"sessions":[{"id":"5BBAA1802FC7A2EFF3621F373F747348","start_ti
         UMConfigure.setProcessEvent(true);
         }
     }
-    ```
+```
 
 3. 在manifest.xml 增加必要的权限 和 meta-data
-```java
+
+```
+java
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -62,12 +65,30 @@ constructMessage:{"sessions":[{"id":"5BBAA1802FC7A2EFF3621F373F747348","start_ti
 
 ```
 
- 4. flutter app中引用
+### iOS 集成方法：
+
+1. 集成ysumeng 库
+2. 在 AppDelegate 加入友盟初始化的方法
+
+```objc
+    [UMCommonLogManager setUpUMCommonLogManager];
+    
+
+    [UMConfigure setLogEnabled:YES];//设置打开日志
+    
+    
+    [UMConfigure initWithAppkey:@"Your Appkey" channel:@"App Store"];
+```
+
+
+### flutter app中引用
+
 ```dart
 Future<void> initUmeng() async {
     String platformVersion = await Ysumeng.platformVersion;
 }
 ```
+
     库里面提供了官方sdk的一些方法，Ysumeng.initCommon 等，初始化已经在原生的地方完成了，这个地方可有可无了.
 5. 对页面onPageStart onPageEnd的调用
 
@@ -94,6 +115,7 @@ Future<void> initUmeng() async {
     }
     }
     ```
+
 ```dart
     * 然后在每个StatefulWidget 页面中进行集成即可
     ```dart 
