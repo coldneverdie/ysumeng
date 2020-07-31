@@ -1,15 +1,106 @@
 #import "YsumengPlugin.h"
-#if __has_include(<ysumeng/ysumeng-Swift.h>)
-#import <ysumeng/ysumeng-Swift.h>
-#else
-// Support project import fallback if the generated compatibility header
-// is not copied when this plugin is created as a library.
-// https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
-#import "ysumeng-Swift.h"
-#endif
+
+#import <UMCommon/UMConfigure.h>
+#import <UMCommon/MobClick.h>
+
+@interface YsumengflutterpluginForUMCommon : NSObject
+@end
+@implementation YsumengflutterpluginForUMCommon
+
++ (BOOL)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result{
+    BOOL resultCode = YES;
+    if ([@"initCommon" isEqualToString:call.method]){
+        NSArray* arguments = (NSArray *)call.arguments;
+        NSString* appkey = arguments[1];
+        NSString* channel = arguments[2];
+        [UMConfigure initWithAppkey:appkey channel:channel];
+        //result(@"success");
+    }
+    else{
+        resultCode = NO;
+    }
+    return resultCode;
+}
+@end
+
+@interface YsumengflutterpluginForAnalytics : NSObject
+@end
+@implementation YsumengflutterpluginForAnalytics : NSObject
+
++ (BOOL)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result{
+    BOOL resultCode = YES;
+    NSArray* arguments = (NSArray *)call.arguments;
+    if ([@"onEvent" isEqualToString:call.method]){
+        NSString* eventName = arguments[0];
+        NSDictionary* properties = arguments[1];
+        [MobClick event:eventName attributes:properties];
+        //result(@"success");
+    }
+    else if ([@"onProfileSignIn" isEqualToString:call.method]){
+        NSString* userID = arguments[0];
+        [MobClick profileSignInWithPUID:userID];
+        //result(@"success");
+    }
+    else if ([@"onProfileSignOff" isEqualToString:call.method]){
+        [MobClick profileSignOff];
+        //result(@"success");
+    }
+    else if ([@"setPageCollectionModeAuto" isEqualToString:call.method]){
+        [MobClick setAutoPageEnabled:YES];
+        //result(@"success");
+    }
+    else if ([@"setPageCollectionModeManual" isEqualToString:call.method]){
+        [MobClick setAutoPageEnabled:NO];
+        //result(@"success");
+    }
+    else if ([@"onPageStart" isEqualToString:call.method]){
+        NSString* pageName = arguments[0];
+        [MobClick beginLogPageView:pageName];
+        //result(@"success");
+    }
+    else if ([@"onPageEnd" isEqualToString:call.method]){
+        NSString* pageName = arguments[0];
+        [MobClick endLogPageView:pageName];
+        //result(@"success");
+    }
+    else if ([@"reportError" isEqualToString:call.method]){
+        NSLog(@"reportError API not existed ");
+        //result(@"success");
+     }
+    else{
+        resultCode = NO;
+    }
+    return resultCode;
+}
+
+@end
 
 @implementation YsumengPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftYsumengPlugin registerWithRegistrar:registrar];
+  FlutterMethodChannel* channel = [FlutterMethodChannel
+      methodChannelWithName:@"ysumeng"
+            binaryMessenger:[registrar messenger]];
+  YsumengPlugin* instance = [[YsumengPlugin  alloc] init];
+  [registrar addMethodCallDelegate:instance channel:channel];
 }
+
+- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+  if ([@"getPlatformVersion" isEqualToString:call.method]) {
+      result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
+      return;
+  } else {
+      //result(FlutterMethodNotImplemented);
+  }
+
+    BOOL resultCode = [YsumengflutterpluginForUMCommon handleMethodCall:call result:result];
+    if (resultCode) return;
+
+    resultCode = [YsumengflutterpluginForAnalytics handleMethodCall:call result:result];
+    if (resultCode) return;
+
+    result(FlutterMethodNotImplemented);
+    
+
+}
+
 @end

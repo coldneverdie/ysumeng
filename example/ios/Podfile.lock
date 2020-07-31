@@ -1,0 +1,33 @@
+PODS:
+  - Flutter (1.0.0)
+  - UMCCommon (7.1.1)
+  - UMCCommonLog (2.0.0)
+  - ysumeng (0.0.1):
+    - Flutter
+    - UMCCommon
+    - UMCCommonLog
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ysumeng (from `.symlinks/plugins/ysumeng/ios`)
+
+SPEC REPOS:
+  trunk:
+    - UMCCommon
+    - UMCCommonLog
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ysumeng:
+    :path: ".symlinks/plugins/ysumeng/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  UMCCommon: f455f92c125342e360d6ad9eafe484945351eeb5
+  UMCCommonLog: 9b7ddde5d14a52fc1986ba5ac3121b8b2f433638
+  ysumeng: 7cb926c1330fd7da40cd5e268a16f61ab47b441d
+
+PODFILE CHECKSUM: 7d0e81fbd2c2f8c60db3c9bd7b678a22f076dde4
+
+COCOAPODS: 1.8.4
