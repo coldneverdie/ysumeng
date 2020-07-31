@@ -3,6 +3,9 @@
 #import <UMCommon/UMConfigure.h>
 #import <UMCommon/MobClick.h>
 
+#import <UMCommonLog/UMCommonLogHeaders.h>
+
+
 @interface YsumengflutterpluginForUMCommon : NSObject
 @end
 @implementation YsumengflutterpluginForUMCommon
@@ -13,7 +16,14 @@
         NSArray* arguments = (NSArray *)call.arguments;
         NSString* appkey = arguments[1];
         NSString* channel = arguments[2];
+        BOOL debug = arguments[3];
+
+        [UMCommonLogManager setUpUMCommonLogManager];
+
+        [UMConfigure setLogEnabled:debug];//设置打开日志
+
         [UMConfigure initWithAppkey:appkey channel:channel];
+
         //result(@"success");
     }
     else{
