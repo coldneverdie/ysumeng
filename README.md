@@ -24,8 +24,7 @@ constructMessage:{"sessions":[{"id":"5BBAA1802FC7A2EFF3621F373F747348","start_ti
 1. 集成ysumeng 库
 2. 在应用的application class，做一些初始化操作，如下：
 
-```
-java
+```java
     public class MainApplication extends FlutterApplication {
     @Override
     public void onCreate() {
@@ -33,7 +32,7 @@ java
         android.util.Log.i("UMLog", "Application class.");
         android.util.Log.i("UMLog", "UMConfigure.init@MainApplication");
         com.yuesi.umeng.ysumeng.YsumengPlugin.setContext(this);//此处需要设置，否则插件找不到context.
-        UMConfigure.init(this, "XXX", "official", UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.init(this, "UMENG KEY", "official", UMConfigure.DEVICE_TYPE_PHONE, null);
         UMConfigure.setLogEnabled(true);
         MobclickAgent.setDebugMode(true);
         UMConfigure.setProcessEvent(true);
@@ -89,8 +88,8 @@ Future<void> initUmeng() async {
 }
 ```
 
-    库里面提供了官方sdk的一些方法，Ysumeng.initCommon 等，初始化已经在原生的地方完成了，这个地方可有可无了.
-5. 对页面onPageStart onPageEnd的调用
+* 库里面提供了官方sdk的一些方法，Ysumeng.initCommon 等，初始化已经在原生的地方完成了，这个地方可有可无了.
+   * 对页面onPageStart onPageEnd的调用
 
     * 先创建一个mixin类来进行监听
     ```dart
