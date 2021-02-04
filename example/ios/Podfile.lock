@@ -1,7 +1,11 @@
 PODS:
   - Flutter (1.0.0)
-  - UMCCommon (7.1.1)
+  - UMAPM (1.1.1)
+  - UMCCommon (7.2.5):
+    - UMAPM
+    - UMDevice
   - UMCCommonLog (2.0.0)
+  - UMDevice (1.1.0)
   - ysumeng (0.0.1):
     - Flutter
     - UMCCommon
@@ -13,8 +17,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - UMAPM
     - UMCCommon
     - UMCCommonLog
+    - UMDevice
 
 EXTERNAL SOURCES:
   Flutter:
@@ -24,10 +30,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  UMCCommon: f455f92c125342e360d6ad9eafe484945351eeb5
+  UMAPM: d0623e0b3ca8b1a1df855e0bddb91b5c002d097d
+  UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
   UMCCommonLog: 9b7ddde5d14a52fc1986ba5ac3121b8b2f433638
+  UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   ysumeng: 7cb926c1330fd7da40cd5e268a16f61ab47b441d
 
 PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0
